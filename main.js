@@ -2,7 +2,7 @@ const {app, BrowserWindow} = require('electron');
 
 
 // Set environment
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'production';
 
 // Development/Production environment check status 
 const isDev = process.env.NODE_ENV !== 'production' ? true : false;
@@ -15,9 +15,10 @@ let mainWindow
 function createMainWindow(){
     mainWindow = new BrowserWindow({
         title: 'ImageShrinker',
-        width: 600,
+        width: 900,
         height: 600,
-        icon: `${__dirname}/assets/Icon_256x256.png`
+        icon: `${__dirname}/assets/Icon_256x256.png`,
+        resizable: !isDev
     });
 
     // File Path
@@ -27,3 +28,16 @@ function createMainWindow(){
 
 
 app.on('ready', createMainWindow);
+
+// Quit when all windows are closed
+app.on('window-all-closed', () => {
+    if(!isWin){
+        app.quit();
+    }
+});
+
+app.on('activate', () => {
+    if(BrowserWindow.getAllWindows().length === 0){
+        createMainWindow();
+    }
+});
