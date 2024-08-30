@@ -1,5 +1,15 @@
 const {app, BrowserWindow} = require('electron');
 
+
+// Set environment
+process.env.NODE_ENV = 'development';
+
+// Development/Production environment check status 
+const isDev = process.env.NODE_ENV !== 'production' ? true : false;
+
+// Platform status
+const isWin = process.platform === 'win32' ? true : false;
+
 let mainWindow
 
 function createMainWindow(){
@@ -7,7 +17,7 @@ function createMainWindow(){
         title: 'ImageShrinker',
         width: 600,
         height: 600,
-        icon: './assets/Icon_256x256.png'
+        icon: `${__dirname}/assets/Icon_256x256.png`
     });
 
     // File Path
