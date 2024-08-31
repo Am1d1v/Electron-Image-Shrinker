@@ -11,7 +11,7 @@ const isDev = process.env.NODE_ENV !== 'production' ? true : false;
 const isWin = process.platform === 'win32' ? true : false;
 
 let mainWindow;
-let AboutWindow;
+let aboutWindow;
 
 function createMainWindow(){
     mainWindow = new BrowserWindow({
@@ -28,8 +28,8 @@ function createMainWindow(){
     mainWindow.loadFile('./app/index.html');
 };
 
-// About Window
-function createAboutnWindow(){
+// About Window. Contains info about app
+function createAboutWindow(){
     aboutWindow = new BrowserWindow({
         title: 'About ImageShrinker',
         width: 300,
@@ -62,22 +62,16 @@ app.on('ready', () => {
 
 
 // Menu Items 
-/* const menu = [
-    {
-        label: 'File',
+const menu = [
+    ...(isWin ?[{
+        label: app.name,
         submenu: [
             {
-                label: 'Quit',
-                accelerator: 'Ctrl+W',
-                click: () => app.quit()
-            },
+                label: 'About',
+                click: createAboutWindow
+            }
         ]
-    }
-]; */
-const menu = [
-    {
-        role: 'fileMenu',
-    },
+    }] : []),
     {
         label: 'Developer',
         submenu: [
