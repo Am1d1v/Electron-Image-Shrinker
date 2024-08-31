@@ -10,7 +10,8 @@ const isDev = process.env.NODE_ENV !== 'production' ? true : false;
 // Platform status
 const isWin = process.platform === 'win32' ? true : false;
 
-let mainWindow
+let mainWindow;
+let AboutWindow;
 
 function createMainWindow(){
     mainWindow = new BrowserWindow({
@@ -25,6 +26,22 @@ function createMainWindow(){
     // File Path
     //mainWindow.loadURL(`file://${__dirname}/app/index.html`);
     mainWindow.loadFile('./app/index.html');
+};
+
+// About Window
+function createAboutnWindow(){
+    aboutWindow = new BrowserWindow({
+        title: 'About ImageShrinker',
+        width: 300,
+        height: 300,
+        icon: `${__dirname}/assets/Icon_256x256.png`,
+        resizable: false,
+        backgroundColor: 'white'
+    });
+
+    // File Path
+    //mainWindow.loadURL(`file://${__dirname}/app/index.html`);
+    aboutWindow.loadFile('./app/about.html');
 };
 
 app.on('ready', () => {
@@ -45,7 +62,7 @@ app.on('ready', () => {
 
 
 // Menu Items 
-const menu = [
+/* const menu = [
     {
         label: 'File',
         submenu: [
@@ -54,6 +71,20 @@ const menu = [
                 accelerator: 'Ctrl+W',
                 click: () => app.quit()
             },
+        ]
+    }
+]; */
+const menu = [
+    {
+        role: 'fileMenu',
+    },
+    {
+        label: 'Developer',
+        submenu: [
+            {role: 'reload'},
+            {role: 'forcereload'},
+            {type: 'separator'},
+            {role: 'toggledevtools'},
         ]
     }
 ];
