@@ -1,4 +1,4 @@
-const {app, BrowserWindow, Menu} = require('electron');
+const {app, BrowserWindow, Menu, globalShortcut} = require('electron');
 
 
 // Set environment
@@ -33,15 +33,21 @@ app.on('ready', () => {
     const mainMenu = Menu.buildFromTemplate(menu);
     Menu.setApplicationMenu(mainMenu);
 
+    // Reload window
+    globalShortcut.register('Ctrl+R', () => mainWindow.reload())
+
     mainWindow.on('close', () => mainWindow = null);
 });
 
+
+// Menu Items 
 const menu = [
     {
         label: 'File',
         submenu: [
             {
                 label: 'Quit',
+                accelerator: 'Ctrl+W',
                 click: () => app.quit()
             },
         ]
