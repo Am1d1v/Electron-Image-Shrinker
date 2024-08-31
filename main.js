@@ -18,7 +18,8 @@ function createMainWindow(){
         width: 900,
         height: 600,
         icon: `${__dirname}/assets/Icon_256x256.png`,
-        resizable: !isDev
+        resizable: !isDev,
+        backgroundColor: 'white'
     });
 
     // File Path
@@ -34,7 +35,10 @@ app.on('ready', () => {
     Menu.setApplicationMenu(mainMenu);
 
     // Reload window
-    globalShortcut.register('Ctrl+R', () => mainWindow.reload())
+    globalShortcut.register('Ctrl+R', () => mainWindow.reload());
+
+    // Show dev tools
+    globalShortcut.register('Ctrl+Alt+I', () => mainWindow.toggleDevTools());
 
     mainWindow.on('close', () => mainWindow = null);
 });
