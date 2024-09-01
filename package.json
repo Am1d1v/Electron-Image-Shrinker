@@ -12,5 +12,9 @@
   "devDependencies": {
     "electron": "^32.0.1",
     "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "@materializecss/materialize": "^2.1.1",
+    "font-awesome": "^4.7.0"
   }
 }

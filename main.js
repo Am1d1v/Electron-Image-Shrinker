@@ -40,7 +40,6 @@ function createAboutWindow(){
     });
 
     // File Path
-    //mainWindow.loadURL(`file://${__dirname}/app/index.html`);
     aboutWindow.loadFile('./app/about.html');
 };
 
