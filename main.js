@@ -16,12 +16,20 @@ let aboutWindow;
 function createMainWindow(){
     mainWindow = new BrowserWindow({
         title: 'ImageShrinker',
-        width: 900,
+        width: isDev ? 1000 : 900,
         height: 600,
         icon: `${__dirname}/assets/Icon_256x256.png`,
         resizable: !isDev,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
     });
+
+    if(isDev){
+        mainWindow.webContents.openDevTools();
+    }
 
     // File Path
     //mainWindow.loadURL(`file://${__dirname}/app/index.html`);
