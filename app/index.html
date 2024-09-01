@@ -33,8 +33,21 @@
                 <strong>Quality:</strong>
                 <em>The lower the quality, the smaller the file size</em>
             </p>
+            <p class="range-field">
+                <input type="range" min="0" max="100" id="slider">
+            </p>
+
+            <input type="submit" value="Resize" class="btn black">
 
         </form>
+
+
+        <div class="card output">
+            <div class="card-content">
+                Output Path: <span id="output-path"></span>
+            </div>
+        </div>
+
     </div>
 
 </body>
