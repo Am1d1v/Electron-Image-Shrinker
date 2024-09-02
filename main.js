@@ -1,8 +1,8 @@
-const {app, BrowserWindow, Menu, globalShortcut} = require('electron');
+const {app, BrowserWindow, Menu, globalShortcut, ipcMain} = require('electron');
 
 
 // Set environment
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 
 // Development/Production environment check status 
 const isDev = process.env.NODE_ENV !== 'production' ? true : false;
@@ -16,7 +16,7 @@ let aboutWindow;
 function createMainWindow(){
     mainWindow = new BrowserWindow({
         title: 'ImageShrinker',
-        width: isDev ? 1000 : 900,
+        width: isDev ? 1800 : 900,
         height: 600,
         icon: `${__dirname}/assets/Icon_256x256.png`,
         resizable: !isDev,
@@ -90,6 +90,10 @@ const menu = [
     }
 ];
 
+// Image catch
+ipcMain.on('image:minimize', (e, options) => {
+    console.log(options);
+});
 
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
