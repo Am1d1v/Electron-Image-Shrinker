@@ -15,6 +15,10 @@
   },
   "dependencies": {
     "@materializecss/materialize": "^2.1.1",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "imagemin": "^9.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "slash": "^5.1.0"
   }
 }

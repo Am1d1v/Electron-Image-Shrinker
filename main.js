@@ -1,4 +1,10 @@
 const {app, BrowserWindow, Menu, globalShortcut, ipcMain} = require('electron');
+const path = require('path');
+const os = require('os');
+const imagemin = require('imagemin');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const imageminPngquant = require('imagemin-pngquant');
+const slash = require('slash');
 
 
 // Set environment
@@ -92,8 +98,13 @@ const menu = [
 
 // Image catch
 ipcMain.on('image:minimize', (e, options) => {
-    console.log(options);
+    options,dest = path.join(os.homedir(), 'imageshrink');
+    shrinkImage(options);
 });
+
+async function shrinkImage({imgPath, quality, dest}){
+
+}
 
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
